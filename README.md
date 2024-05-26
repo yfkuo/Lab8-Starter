@@ -1,2 +1,5 @@
 # Lab8-Starter
-## How are graceful degradation and service workers related?
+- Team members: Yu-Jia Fiona Kuo, Timothy Lam.
+- Link:
+### How are graceful degradation and service workers related?
+- Answer:
