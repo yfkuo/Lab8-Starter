@@ -1,7 +1,8 @@
 // sw.js - This file needs to be in the root of the directory to work,
 //         so do not move it next to the other scripts
+
 const CACHE_NAME = 'lab-8-starter';
-const RECIPE_URLS = [
+const RECIPE_URLs = [
   'https://adarsh249.github.io/Lab8-Starter/recipes/1_50-thanksgiving-side-dishes.json',
   'https://adarsh249.github.io/Lab8-Starter/recipes/2_roasting-turkey-breast-with-stuffing.json',
   'https://adarsh249.github.io/Lab8-Starter/recipes/3_moms-cornbread-stuffing.json',
@@ -12,15 +13,9 @@ const RECIPE_URLS = [
 
 // Installs the service worker. Feed it some initial URLs to cache
 self.addEventListener('install', function (event) {
-
-  console.log('Service Worker: Installing...');
-
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      // B6. TODO - Add all of the URLs from RECIPE_URLs here so that they are
-      //            added to the cache when the ServiceWorker is installed
-      console.log('Service Worker: Caching core assets and recipe URLs');
-      return cache.addAll(RECIPE_URLS);
+      return cache.addAll(RECIPE_URLs);
     })
   );
 });
@@ -57,13 +52,17 @@ self.addEventListener('fetch', function (event) {
           console.log('return (response)');
           return response;
         } else {
-          fetch(event.request).then(function (networkResponse) {
+          return fetch(event.request).then(function (networkResponse) {
             cache.put(event.request, networkResponse.clone());
             console.log('return networkResponse');
             return networkResponse;
           });
         }
+      }).catch(function (error) {
+        console.error('Fetching failed:', error);
+        throw error;
       });
     })
   );
 });
+

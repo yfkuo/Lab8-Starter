@@ -2,4 +2,4 @@
 - Team members: Yu-Jia Fiona Kuo, Timothy Lam.
 - Link:
 ### How are graceful degradation and service workers related?
-- Answer:
+- Answer: Service workers provides fallback content when offline, allowing the web application usable when users are experiencing slow or no internet connectivity. This also aligns with the principle of graceful degradation, ensuring users have access to critical functionalities regardless of their device capabilities.
